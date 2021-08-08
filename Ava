@@ -1,0 +1,45 @@
+from gopigo import *
+import time
+import random
+
+min_distance = 70
+sleep = 1
+sleep = time.sleep(1)
+def autonomy():
+  no_problem = True
+  while no_problem:
+    servo(70)
+    sleep
+    dist = au_dist(15)
+    if dist>min_distance:
+      print('Forward is fine',dist)
+      fwd()
+      sleep
+     else:
+      print('obstacle seen',dist)
+      stop()
+      servo(28)
+      sleep
+      left_dir = au_dist(15)
+      servo(112)
+      right_dir = au)dist(15)
+      sleep
+      
+      if left_dir > right_dir and left_dir>min_distance:
+        print('choose left!')
+        left()
+        sleep
+       elif left_dir < right_dir and right_dir > min_distance:
+                print('Choose Right!')
+                right()
+                time.sleep(1)
+            else:
+                print('No good option, REVERSE!')
+                bwd()
+                time.sleep(2)
+                rot_choices = [right_rot, left_rot]
+                rotation = rot_choices[random.randrange(0,2)]
+                rotation()
+                time.sleep(1)
+
+            stop()
